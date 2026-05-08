@@ -1,0 +1,2016 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buen Cristiano y Ético Ciudadano</title>
+  <style>
+    :root {
+      --salesian-blue: #0057b8;
+      --sun: #ffc400;
+      --red: #e63946;
+      --green: #12a150;
+      --ink: #14213d;
+      --paper: #fffdf7;
+      --violet: #7b2cbf;
+      --cyan: #00b4d8;
+      --shadow: 0 18px 45px rgba(20, 33, 61, .18);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radíal-gradient(circle at 15% 12%, rgba(255, 196, 0, .44), transparent 26%),
+        radíal-gradient(circle at 84% 18%, rgba(0, 180, 216, .35), transparent 24%),
+        linear-gradient(135deg, #fff8d8 0%, #f4fbff 48%, #fff1f4 100%);
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+    }
+
+    button:hover { transform: translateY(-1px); filter: brightness(1.02); }
+    button:active { transform: translateY(1px); }
+    button:disabled { cursor: not-allowed; opacity: .5; transform: none; }
+
+    .app {
+      width: min(1180px, calc(100vw - 28px));
+      margin: 0 auto;
+      padding: 22px 0 34px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      padding: 12px 0 20px;
+    }
+
+    .brand {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .mark {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: white;
+      font-weight: 900;
+      font-size: 25px;
+      background: conic-gradient(from 20deg, var(--salesian-blue), var(--cyan), var(--sun), var(--red), var(--salesian-blue));
+      box-shadow: var(--shadow);
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      font-size: clamp(30px, 4.8vw, 58px);
+      line-height: .98;
+      letter-spacing: 0;
+      color: #073b7a;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #385170;
+      margin-top: 7px;
+      max-width: 760px;
+    }
+
+    .panel {
+      background: rgba(255, 255, 255, .86);
+      border: 1px solid rgba(0, 87, 184, .12);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    .setup {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .setup-main {
+      padding: 24px;
+    }
+
+    .setup-main h2 {
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    .team-list {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .team-row {
+      display: grid;
+      grid-template-columns: 44px 1fr 44px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .team-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      background: #e7f1ff;
+      color: var(--salesian-blue);
+    }
+
+    input {
+      width: 100%;
+      height: 44px;
+      border: 1px solid #c7d8ef;
+      border-radius: 8px;
+      padding: 0 14px;
+      background: white;
+      color: var(--ink);
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--salesian-blue);
+      box-shadow: 0 0 0 3px rgba(0, 87, 184, .15);
+    }
+
+    .icon-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 22px;
+      font-weight: 900;
+      background: var(--red);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .primary {
+      min-height: 46px;
+      border-radius: 8px;
+      padding: 0 18px;
+      color: white;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--salesian-blue), #0084d6);
+      box-shadow: 0 10px 24px rgba(0, 87, 184, .25);
+    }
+
+    .secondary {
+      min-height: 46px;
+      border-radius: 8px;
+      padding: 0 16px;
+      color: #073b7a;
+      font-weight: 800;
+      background: #ffe88a;
+    }
+
+    .danger {
+      min-height: 42px;
+      border-radius: 8px;
+      padding: 0 14px;
+      color: white;
+      font-weight: 800;
+      background: var(--red);
+    }
+
+    .setup-side {
+      padding: 22px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 14px;
+      border-left: 6px solid var(--salesian-blue);
+      background: #f4f9ff;
+      border-radius: 8px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      color: var(--salesian-blue);
+    }
+
+    .game {
+      display: none;
+      gap: 16px;
+    }
+
+    .score-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .score-card {
+      padding: 13px;
+      border-radius: 8px;
+      background: white;
+      border: 2px solid transparent;
+      min-height: 86px;
+    }
+
+    .score-card.active {
+      border-color: var(--sun);
+      box-shadow: 0 0 0 4px rgba(255, 196, 0, .22);
+    }
+
+    .score-card .name {
+      font-weight: 900;
+      overflow-wrap: anywhere;
+    }
+
+    .score-card .points {
+      font-size: 28px;
+      font-weight: 950;
+      color: var(--salesian-blue);
+    }
+
+    .question-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .question-panel {
+      padding: 24px;
+      min-height: 580px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 13px;
+      font-weight: 850;
+      background: #e7f1ff;
+      color: #073b7a;
+    }
+
+    .pill.yellow { background: #fff1a6; color: #614b00; }
+    .pill.red { background: #ffe0e3; color: #8d1120; }
+    .pill.green { background: #dff7e9; color: #08612f; }
+
+    .question-text {
+      font-size: clamp(22px, 2.5vw, 31px);
+      line-height: 1.18;
+      font-weight: 900;
+      overflow-wrap: anywhere;
+    }
+
+    .timer-row {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .timer {
+      height: 96px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 34px;
+      font-weight: 950;
+      color: white;
+      background: conic-gradient(var(--green) 360deg, #dbe7f3 0deg);
+      box-shadow: inset 0 0 0 8px rgba(255,255,255,.35), var(--shadow);
+    }
+
+    .timer-note {
+      color: #405a78;
+      line-height: 1.4;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .answer {
+      min-height: 92px;
+      padding: 14px 14px;
+      text-align: left;
+      border-radius: 8px;
+      color: #10243d;
+      background: #ffffff;
+      border: 2px solid #d6e3f5;
+      box-shadow: 0 8px 18px rgba(20,33,61,.08);
+      font-weight: 760;
+      line-height: 1.24;
+      overflow-wrap: anywhere;
+    }
+
+    .answer.correct {
+      border-color: var(--green);
+      background: #dcf9e7;
+    }
+
+    .answer.wrong {
+      border-color: var(--red);
+      background: #ffe1e4;
+    }
+
+    .answer .letter {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      margin-right: 8px;
+      border-radius: 6px;
+      background: var(--salesian-blue);
+      color: white;
+      font-weight: 950;
+    }
+
+    .feedback {
+      display: none;
+      padding: 17px;
+      border-radius: 8px;
+      line-height: 1.45;
+      background: #f4f9ff;
+      border-left: 7px solid var(--salesian-blue);
+    }
+
+    .feedback strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+
+    .side-panel {
+      padding: 20px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .turn-box {
+      padding: 17px;
+      border-radius: 8px;
+      color: white;
+      background: linear-gradient(135deg, #073b7a, #00a5cf);
+    }
+
+    .turn-box .label {
+      opacity: .86;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .turn-box .team {
+      margin-top: 7px;
+      font-size: 26px;
+      font-weight: 950;
+      overflow-wrap: anywhere;
+    }
+
+    .progress {
+      height: 12px;
+      border-radius: 999px;
+      background: #dce8f6;
+      overflow: hidden;
+    }
+
+    .progress div {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--sun), var(--green), var(--cyan));
+    }
+
+    .ranking {
+      display: none;
+      padding: 24px;
+    }
+
+    .ranking h2 {
+      font-size: clamp(28px, 4vw, 46px);
+      color: #073b7a;
+      margin-bottom: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 14px 12px;
+      text-align: left;
+      border-bottom: 1px solid #e7eef8;
+    }
+
+    th {
+      color: white;
+      background: var(--salesian-blue);
+    }
+
+    tr:first-child td {
+      font-size: 22px;
+      font-weight: 950;
+      background: #fff5bd;
+    }
+
+    .winner {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 8px;
+      color: #073b7a;
+      background: #fff1a6;
+      font-size: 24px;
+      font-weight: 950;
+      box-shadow: var(--shadow);
+    }
+
+    canvas#confetti {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    @medía (max-width: 880px) {
+      .setup, .question-layout { grid-template-columns: 1fr; }
+      .question-panel { min-height: auto; }
+      .answers { grid-template-columns: 1fr; }
+      .topbar { align-items: flex-start; }
+    }
+
+    /* Estética inspirada en el juego de referencia, conservando la lógica propia. */
+    :root {
+      --night: #020617;
+      --glass: rgba(15, 23, 42, .68);
+      --glass-soft: rgba(255, 255, 255, .06);
+      --line: rgba(255, 255, 255, .12);
+      --blue-glow: #60a5fa;
+      --soft-text: #cbd5e1;
+      --title-blue: #bfdbfe;
+      --danger-glow: #ef4444;
+      --gold: #eab308;
+      --shadow: 0 26px 70px rgba(0, 0, 0, .42);
+    }
+
+    body {
+      min-height: 100vh;
+      color: white;
+      background-color: var(--night);
+      background-image:
+        linear-gradient(rgba(2, 6, 23, .82), rgba(2, 6, 23, .86)),
+        url("https://www.salesianos.org.ec/wp-content/uploads/2026/01/Imagenes-Don-Bosco.webp");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radíal-gradient(circle at 18% 18%, rgba(37, 99, 235, .28), transparent 24%),
+        radíal-gradient(circle at 78% 12%, rgba(220, 38, 38, .18), transparent 24%),
+        radíal-gradient(circle at 50% 95%, rgba(234, 179, 8, .18), transparent 28%);
+      z-index: -1;
+    }
+
+    .app {
+      width: min(1180px, calc(100vw - 24px));
+      min-height: 100vh;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      min-height: 86px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+      background: rgba(2, 6, 23, .42);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .mark {
+      display: none;
+    }
+
+    h1 {
+      color: var(--title-blue);
+      font-size: clamp(36px, 5.4vw, 64px);
+      text-transform: uppercase;
+      font-weight: 950;
+      letter-spacing: 0;
+      font-style: italic;
+      text-shadow: 0 0 28px rgba(96, 165, 250, .32);
+    }
+
+    .subtitle {
+      color: var(--soft-text);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: 12px;
+      max-width: none;
+    }
+
+    .panel {
+      color: white;
+      background: var(--glass);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px);
+    }
+
+    .setup {
+      width: min(920px, 100%);
+      margin: auto;
+      grid-template-columns: 1fr;
+      padding: 26px 0;
+    }
+
+    .setup-main {
+      padding: clamp(24px, 4vw, 38px);
+    }
+
+    .setup-main h2 {
+      text-align: center;
+      color: #dbeafe;
+      text-transform: uppercase;
+      font-size: clamp(22px, 3vw, 34px);
+      font-style: italic;
+      font-weight: 950;
+      margin-bottom: 10px;
+    }
+
+    .team-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(0, 0, 0, .34);
+      border: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .team-row {
+      grid-template-columns: 38px 1fr 38px;
+      padding: 10px;
+      border-radius: 16px;
+      background: var(--glass-soft);
+      border: 1px solid rgba(255, 255, 255, .09);
+    }
+
+    .team-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      color: white;
+      background: #2563eb;
+      font-weight: 950;
+    }
+
+    input {
+      height: 42px;
+      color: white;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 12px;
+      font-weight: 750;
+    }
+
+    input::placeholder {
+      color: #94a3b8;
+    }
+
+    input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, .24);
+    }
+
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: rgba(239, 68, 68, .88);
+      text-transform: uppercase;
+    }
+
+    .actions {
+      justify-content: center;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .primary,
+    .secondary,
+    .danger {
+      min-height: 58px;
+      border-radius: 18px;
+      padding: 0 26px;
+      color: white;
+      font-weight: 950;
+      text-transform: uppercase;
+      font-style: italic;
+      letter-spacing: .02em;
+      box-shadow: 0 18px 38px rgba(0, 0, 0, .34);
+    }
+
+    .primary {
+      background: linear-gradient(90deg, #dc2626, #2563eb);
+    }
+
+    .secondary {
+      color: white;
+      background: #2563eb;
+    }
+
+    .danger {
+      background: rgba(220, 38, 38, .92);
+    }
+
+    .primary:hover,
+    .secondary:hover,
+    .danger:hover {
+      transform: translateY(-2px) scale(1.015);
+      filter: brightness(1.08);
+    }
+
+    .setup-side {
+      grid-template-columns: repeat(3, 1fr);
+      padding: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .setup-side .subtitle {
+      grid-column: 1 / -1;
+      text-align: center;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 14px;
+      color: #dbeafe;
+    }
+
+    .stat {
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-left: 0;
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, .06);
+      text-align: center;
+      border-radius: 18px;
+    }
+
+    .stat strong {
+      color: #facc15;
+      font-size: 34px;
+      text-shadow: 0 0 22px rgba(250, 204, 21, .28);
+    }
+
+    .game {
+      flex: 1;
+      padding: 18px 0 0;
+    }
+
+    .score-strip {
+      position: static;
+      z-index: 8;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin: 14px 0 24px;
+      padding: 14px;
+      background: rgba(2, 6, 23, .86);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      backdrop-filter: blur(18px);
+    }
+
+    .score-card {
+      min-height: 70px;
+      padding: 12px;
+      border-radius: 16px;
+      color: white;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .08);
+      opacity: .62;
+    }
+
+    .score-card.active {
+      opacity: 1;
+      background: rgba(37, 99, 235, .24);
+      border-color: #3b82f6;
+      box-shadow: 0 0 24px rgba(59, 130, 246, .18);
+      transform: scale(1.03);
+    }
+
+    .score-card .name {
+      color: #cbd5e1;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+
+    .score-card .points {
+      color: white;
+      font-size: 26px;
+      font-style: italic;
+    }
+
+    .question-layout {
+      grid-template-columns: 1fr;
+      padding-bottom: 24px;
+    }
+
+    .question-panel {
+      width: min(1000px, 100%);
+      margin: 0 auto;
+      min-height: auto;
+      padding: clamp(24px, 4vw, 42px);
+      border-radius: 40px;
+      background: rgba(15, 23, 42, .66);
+      text-align: center;
+    }
+
+    .meta {
+      justify-content: center;
+    }
+
+    .pill {
+      border-radius: 9px;
+      padding: 8px 12px;
+      color: white;
+      background: #2563eb;
+      font-size: 12px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .pill.yellow {
+      background: #dc2626;
+      color: white;
+    }
+
+    .pill.green {
+      background: rgba(22, 163, 74, .85);
+      color: white;
+    }
+
+    .question-text {
+      color: #eff6ff;
+      font-size: clamp(25px, 3.3vw, 42px);
+      line-height: 1.18;
+      font-weight: 750;
+      text-align: center;
+      text-shadow: 0 0 24px rgba(147, 197, 253, .16);
+    }
+
+    .timer-row {
+      width: min(440px, 100%);
+      margin: 0 auto;
+      grid-template-columns: 106px 1fr;
+      text-align: left;
+    }
+
+    .timer {
+      height: 106px;
+      font-size: 38px;
+      color: white;
+      box-shadow: inset 0 0 0 9px rgba(255, 255, 255, .12), 0 0 32px rgba(59, 130, 246, .24);
+    }
+
+    .timer-note {
+      color: #cbd5e1;
+      font-weight: 650;
+    }
+
+    .answers {
+      width: 100%;
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .answer {
+      min-height: 122px;
+      padding: 24px;
+      border-radius: 28px;
+      color: white;
+      background: rgba(15, 23, 42, .62);
+      border: 2px solid rgba(255, 255, 255, .1);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .22);
+      font-size: clamp(16px, 1.7vw, 20px);
+      font-weight: 650;
+      backdrop-filter: blur(14px);
+    }
+
+    .answer:hover {
+      border-color: rgba(96, 165, 250, .75);
+      background: rgba(30, 64, 175, .32);
+    }
+
+    .answer.correct {
+      border-color: #86efac;
+      background: rgba(22, 163, 74, .82);
+      box-shadow: 0 0 34px rgba(34, 197, 94, .28);
+    }
+
+    .answer.wrong {
+      border-color: #fca5a5;
+      background: rgba(220, 38, 38, .82);
+      box-shadow: 0 0 34px rgba(239, 68, 68, .26);
+    }
+
+    .answer .letter {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      margin-right: 12px;
+      background: rgba(255, 255, 255, .12);
+    }
+
+    .side-panel {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 9;
+      width: min(310px, calc(100vw - 28px));
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border-radius: 999px;
+      background: rgba(2, 6, 23, .58);
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
+    .turn-box {
+      flex: 1;
+      padding: 0 8px;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .turn-box .label {
+      color: #94a3b8;
+      font-size: 10px;
+    }
+
+    .turn-box .team {
+      color: #60a5fa;
+      margin-top: 1px;
+      font-size: 15px;
+      text-transform: uppercase;
+      font-style: italic;
+    }
+
+    .side-panel > div:nth-child(2) {
+      display: none;
+    }
+
+    .side-panel .secondary {
+      display: none;
+    }
+
+    .side-panel .danger {
+      min-height: 44px;
+      width: 44px;
+      padding: 0;
+      border-radius: 50%;
+      font-size: 0;
+      position: relative;
+    }
+
+    .side-panel .danger::before {
+      content: "×";
+      font-size: 32px;
+      line-height: 1;
+      font-style: normal;
+    }
+
+    .feedback {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      display: none;
+      padding: 24px;
+      border-radius: 0;
+      border: 0;
+      background: rgba(2, 6, 23, .92);
+      backdrop-filter: blur(22px);
+    }
+
+    .feedback .modal-card {
+      width: min(760px, 100%);
+      max-height: calc(100vh - 48px);
+      overflow: auto;
+      margin: 24px auto 0;
+      padding: clamp(22px, 3vw, 34px);
+      border-radius: 44px;
+      background: #0f172a;
+      border: 4px solid #3b82f6;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, .55);
+      text-align: center;
+    }
+
+    .feedback .result-icon {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: white;
+      font-size: 58px;
+      font-weight: 950;
+      box-shadow: 0 0 34px rgba(255, 255, 255, .12);
+    }
+
+    .feedback.correct-modal .modal-card {
+      border-color: #22c55e;
+    }
+
+    .feedback.wrong-modal .modal-card {
+      border-color: #ef4444;
+    }
+
+    .feedback.correct-modal .result-icon {
+      background: #16a34a;
+      box-shadow: 0 0 34px rgba(34, 197, 94, .26);
+    }
+
+    .feedback.wrong-modal .result-icon {
+      background: #dc2626;
+      box-shadow: 0 0 34px rgba(239, 68, 68, .26);
+    }
+
+    .feedback strong {
+      color: white;
+      display: block;
+      margin-bottom: 10px;
+      font-size: clamp(30px, 5vw, 48px);
+      text-transform: uppercase;
+      font-style: italic;
+      letter-spacing: 0;
+    }
+
+    .feedback p {
+      color: #cbd5e1;
+      font-size: 18px;
+      line-height: 1.48;
+      margin: 10px 0;
+    }
+
+    .feedback .argument {
+      margin: 28px 0;
+      padding: 24px;
+      border-radius: 28px;
+      text-align: left;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .feedback .argument-label {
+      color: #60a5fa;
+      font-size: 12px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      margin-bottom: 12px;
+    }
+
+    .feedback .modal-next {
+      width: 100%;
+      min-height: 66px;
+      border-radius: 20px;
+      color: white;
+      background: #2563eb;
+      font-weight: 950;
+      text-transform: uppercase;
+      font-style: italic;
+      font-size: 22px;
+    }
+
+    .ranking {
+      width: min(900px, 100%);
+      margin: auto;
+      padding: clamp(26px, 5vw, 50px);
+      text-align: center;
+      border-radius: 54px;
+      background: rgba(15, 23, 42, .72);
+    }
+
+    .ranking h2 {
+      color: white;
+      font-size: clamp(40px, 6vw, 66px);
+      text-transform: uppercase;
+      font-style: italic;
+      font-weight: 950;
+    }
+
+    .winner {
+      color: #fef3c7;
+      background: rgba(234, 179, 8, .16);
+      border: 1px solid rgba(234, 179, 8, .46);
+      border-radius: 28px;
+      font-size: clamp(22px, 3vw, 34px);
+      text-transform: uppercase;
+      font-style: italic;
+    }
+
+    table {
+      color: white;
+      background: transparent;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+    }
+
+    th {
+      color: #93c5fd;
+      background: transparent;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: .08em;
+      border: 0;
+    }
+
+    td {
+      background: rgba(255, 255, 255, .06);
+      border: 0;
+      font-weight: 800;
+    }
+
+    td:first-child {
+      border-radius: 20px 0 0 20px;
+    }
+
+    td:last-child {
+      border-radius: 0 20px 20px 0;
+    }
+
+    tr:first-child td {
+      color: white;
+      background: rgba(234, 179, 8, .22);
+      border-top: 1px solid rgba(234, 179, 8, .32);
+      border-bottom: 1px solid rgba(234, 179, 8, .32);
+    }
+
+    @medía (max-width: 880px) {
+      .team-list,
+      .setup-side,
+      .answers {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        padding-right: 58px;
+      }
+
+      .side-panel {
+        width: 52px;
+        padding: 4px;
+      }
+
+      .turn-box {
+        display: none;
+      }
+
+      .question-layout {
+        padding-bottom: 24px;
+      }
+
+      .score-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .feedback .modal-card {
+        border-radius: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti"></canvas>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="mark">DB</div>
+        <div>
+          <h1>Buen Cristiano y Ético Ciudadano</h1>
+          <p class="subtitle">Trivia por equipos sobre el Código de Comportamiento Ético Salesiano, capítulos III al V.</p>
+        </div>
+      </div>
+    </header>
+
+    <section id="setup" class="setup">
+      <div class="panel setup-main">
+        <h2>Registro de equipos</h2>
+        <p class="subtitle">Escriba los nombres de los equipos. Puede iniciar con seis o ajustar la lista según los participantes.</p>
+        <div id="teamList" class="team-list"></div>
+        <div class="actions">
+          <button id="addTeam" class="secondary">+ Agregar equipo</button>
+          <button id="startGame" class="primary">Iniciar juego</button>
+        </div>
+      </div>
+      <aside class="panel setup-side">
+        <div class="stat"><strong>35</strong> preguntas por casos</div>
+        <div class="stat"><strong>30 s</strong> por pregunta</div>
+        <div class="stat"><strong>10</strong> puntos por acierto</div>
+        <p class="subtitle">El turno avanza de forma alternada entre equipos. El juego puede finalizarse en cualquier momento para mostrar la tabla de posiciones.</p>
+      </aside>
+    </section>
+
+    <section id="game" class="game">
+      <div class="question-layout">
+        <article class="panel question-panel">
+          <div class="meta">
+            <span id="questionCount" class="pill yellow">Pregunta 1 de 35</span>
+            <span id="levelTag" class="pill">Nivel</span>
+            <span id="chapterTag" class="pill green">Capítulo</span>
+          </div>
+          <h2 id="questionText" class="question-text"></h2>
+          <div class="timer-row">
+            <div id="timer" class="timer">30</div>
+            <div>
+              <button id="startTimer" class="primary">Iniciar tiempo</button>
+              <p class="timer-note">Las alternativas aparecerán cuando se active el tiempo.</p>
+            </div>
+          </div>
+          <div id="answers" class="answers"></div>
+          <div id="feedback" class="feedback"></div>
+        </article>
+        <aside class="panel side-panel">
+          <div class="turn-box">
+            <div class="label">Turno actual</div>
+            <div id="currentTeam" class="team"></div>
+          </div>
+          <div>
+            <p class="subtitle">Avance del banco de preguntas</p>
+            <div class="progress"><div id="progressBar"></div></div>
+          </div>
+          <button id="nextQuestion" class="secondary" disabled>Siguiente pregunta</button>
+          <button id="finishGame" class="danger">Finalizar y ver posiciones</button>
+        </aside>
+      </div>
+      <div id="scoreStrip" class="score-strip"></div>
+    </section>
+
+    <section id="ranking" class="panel ranking">
+      <h2>Tabla de posiciones</h2>
+      <p id="winnerText" class="winner"></p>
+      <table>
+        <thead>
+          <tr><th>Posición</th><th>Equipo</th><th>Puntos</th><th>Aciertos</th><th>Respondidas</th></tr>
+        </thead>
+        <tbody id="rankingBody"></tbody>
+      </table>
+      <div class="actions">
+        <button id="backToSetup" class="secondary">Volver al registro</button>
+        <button id="playAgain" class="primary">Jugar otra ronda</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const questions = [
+      {
+        chapter: "III", number: "8", page: 15, level: "Bachillerato",
+        text: "Una docente de bachillerato sostiene que su ropa ajustada es parte de su elegancia personal. La prenda no infringe una norma escrita del uniforme docente, pero genera comentarios y desplaza la atención del ambiente educativo. ¿Qué lectura ética es más consistente?",
+        options: [
+          "La libertad de estilo basta si no hay una prohibición expresa.",
+          "La vestimenta debe evaluarse por sobriedad, función y contexto formativo.",
+          "Solo corresponde intervenir si hay una denuncia formal de estudiantes.",
+          "El tema pertenece a gustos personales y queda fuera del Código."
+        ],
+        correct: 1,
+        feedback: "El Código pide mantener una vestimenta sobria y discreta, acorde al cargo y función. No se trata de controlar gustos, sino de cuidar la coherencia del rol educativo."
+      },
+      {
+        chapter: "IV", number: "38", page: 22, level: "Básica superior",
+        text: "Para un festival fuera del colegio, la autoridad autoriza la salida del grupo, pero aún no existe permiso escrito de los representantes. El docente propone salir porque todo está aprobado internamente. ¿Cuál decisión cuida mejor el Código?",
+        options: [
+          "Salir solo con los estudiantes que digan verbalmente que sus padres aceptan.",
+          "Salir porque la autorización institucional reemplaza el permiso familiar.",
+          "Esperar los permisos escritos y asegurar adultos responsables.",
+          "Pedir que un estudiante recoja firmas durante el trayecto."
+        ],
+        correct: 2,
+        feedback: "Antes de llevar de paseo o salida a menores se solicita autorización escrita de padres o responsables legales y se aseguran precauciones de seguridad y acompañamiento adulto."
+      },
+      {
+        chapter: "V", number: "45", page: 27, level: "Bachillerato",
+        text: "Un estudiante cuenta a una docente un rumor serio sobre conducta inadecuada de un adulto con una menor. La docente teme equivocarse y decide esperar a tener pruebas. ¿Qué exige el Código?",
+        options: [
+          "Investigar discretamente hasta confirmar la veracidad completa.",
+          "Pedir al curso que no comente nada y observar unas semanas.",
+          "Hablar primero con la persona señalada para evitar injusticias.",
+          "Notificar con celeridad a la autoridad inmediata, aunque sea queja o rumor."
+        ],
+        correct: 3,
+        feedback: "Toda queja, rumor o acusación de conducta inadecuada hacia menores se comunica con la mayor celeridad al Director o autoridad inmediata. La investigación no la asume informalmente el docente."
+      },
+      {
+        chapter: "IV", number: "26", page: 19, level: "Elemental",
+        text: "Un niño de 8 años llora después del recreo. Su tutor quiere conversar a solas para que se sienta protegido. ¿Qué condición vuelve adecuada la intervención?",
+        options: [
+          "Que el niño elija cualquier lugar donde se sienta cómodo.",
+          "Que la conversación ocurra en lugar visible, horario apropiado y con límite de tiempo.",
+          "Que el docente cierre la puerta para evitar que otros lo miren.",
+          "Que el diálogo sea breve, aunque ocurra en una zona aislada."
+        ],
+        correct: 1,
+        feedback: "El diálogo educativo-pastoral individual con menores debe darse en ambientes abiertos o con buena visibilidad, en horarios apropiados y evitando lugares aislados."
+      },
+      {
+        chapter: "III", number: "17", page: 17, level: "Bachillerato",
+        text: "Un profesor vinculado a una fundación externa pide a sus estudiantes vender boletos y ofrece notas sobresalientes a quienes más colaboren. ¿Qué problema ético central aparece?",
+        options: [
+          "La actividad externa puede confundirse con una iniciativa solidaria.",
+          "El docente usa herramientas y autoridad escolar para beneficio ajeno a la obra.",
+          "La venta de boletos siempre está prohibida, aunque sea institucional.",
+          "El incentivo académico solo sería correcto si participa todo el curso."
+        ],
+        correct: 1,
+        feedback: "El Código prohíbe usar herramientas de comunicación o la dinámica institucional para beneficio personal, actividades políticas partidistas o solicitudes ajenas a los asuntos propios de la obra salesiana."
+      },
+      {
+        chapter: "IV", number: "42", page: 23, level: "Preparatoria",
+        text: "En preparatoria, un niño inquieto es colocado contra la pared para que se tranquilice y no interrumpa. El docente afirma que no lo insulta ni le pega. ¿Qué análisis es más fino?",
+        options: [
+          "Es admisible si logra proteger la clase y dura pocos minutos.",
+          "Es preferible a llamar a los representantes durante la jornada.",
+          "Es aceptable si el niño ya conoce esa consecuencia.",
+          "Puede constituir maltrato psicológico si afecta autoestima y dignidad."
+        ],
+        correct: 3,
+        feedback: "El Código evita el maltrato psicológico que afecte autoestima y autoconcepto positivo. La asistencia salesiana debe cuidar, no exponer ni humillar."
+      },
+      {
+        chapter: "III", number: "22", page: 18, level: "Elemental",
+        text: "En una reunión informal, una docente comparte detalles del informe psicopedagógico de una niña para que otros 'entiendan por qué se porta así'. ¿Qué principio está en juego?",
+        options: [
+          "La libertad de cátedra para explicar decisiones pedagógicas.",
+          "La necesidad de que todo el personal conozca todos los casos.",
+          "La cordialidad entre compañeros como prioridad institucional.",
+          "La confidencialidad de información conocida por la labor educativa."
+        ],
+        correct: 3,
+        feedback: "La información, archivos o registros conocidos por la labor educativa se salvaguardan y no se revelan, comentan ni comparten sin autorización previa y escrita cuando corresponda."
+      },
+      {
+        chapter: "IV", number: "30", page: 20, level: "Básica superior",
+        text: "Una docente graba videos recreativos con dos estudiantes fuera del ambiente escolar, en una parrillada familiar, porque 'son maduros y hay confianza'. ¿Qué criterio del Código ilumina mejor el caso?",
+        options: [
+          "La confianza valida la actividad si los representantes conocen a la docente.",
+          "Lo relevante es que el video no contenga lenguaje ofensivo.",
+          "Se deben evitar relaciones exclusivas con menores y preferir intervenciones en equipo.",
+          "Basta con borrar el video si alguien se incomoda después."
+        ],
+        correct: 2,
+        feedback: "El Código reconoce la vulnerabilidad del adulto y del menor; por eso prefiere intervenciones educativas en equipo y evita relaciones exclusivas con menores."
+      },
+      {
+        chapter: "III", number: "6", page: 15, level: "Administrativo-docente",
+        text: "Un coordinador cambia una consigna de convivencia por mensajes sueltos de WhatsApp, sin registro ni comunicación organizada. Luego sanciona a quienes no se enteraron. ¿Qué respuesta se alinea mejor?",
+        options: [
+          "La comunicación debe ser permanente, organizada, honesta y transparente.",
+          "La sanción procede porque todo adulto debe revisar sus mensajes.",
+          "La oralidad basta cuando el grupo tiene experiencia institucional.",
+          "La falta de registro solo importa si hay conflicto con familias."
+        ],
+        correct: 0,
+        feedback: "El Código pide comunicación permanente y organizada sobre obligaciones, basada en honestidad y transparencia, para que todos participen en los objetivos institucionales."
+      },
+      {
+        chapter: "IV", number: "31", page: 20, level: "Bachillerato",
+        text: "Durante encuentros deportivos, el tutor se retira a adelantar informes porque 'hay inspectores cerca'. Sus estudiantes quedan dispersos en graderios y pasillos. ¿Cuál es el punto crítico?",
+        options: [
+          "El tutor puede delegar si el evento fue autorizado por la institución.",
+          "La presencia adulta debe garantizar un clima sano en eventos con menores.",
+          "La supervisión corresponde solo al área deportiva durante competencias.",
+          "La autonomía de adolescentes reduce la necesidad de acompañamiento."
+        ],
+        correct: 1,
+        feedback: "En eventos deportivos, culturales, sociales o religiosos con niños, niñas y adolescentes se asegura un clima sano con presencia de adultos."
+      },
+      {
+        chapter: "V", number: "48", page: 28, level: "Personal administrativo",
+        text: "Una colaboradora presenta una queja por acoso laboral-sexual y teme represalias. ¿Qué garantía institucional recoge el Código?",
+        options: [
+          "La suspensión pública inmediata de toda persona mencionada.",
+          "La mediación obligatoria antes de activar procedimientos.",
+          "El traslado de la persona denunciante para evitar tensiones.",
+          "La reserva de la investigación y ausencia de represalias por presentar la queja."
+        ],
+        correct: 3,
+        feedback: "Para casos de acoso sexual y delitos en el ámbito laboral se siguen procedimientos establecidos; la institución garantiza reserva y que no haya represalias por presentar la queja."
+      },
+      {
+        chapter: "IV", number: "28", page: 20, level: "Elemental",
+        text: "Una tarea pide a estudiantes de 10 años grabarse explicando un tema y publicarlo en redes abiertas. Algunos representantes no quieren exposición pública. ¿Cuál ajuste respeta mejor el Código?",
+        options: [
+          "Mantener la publicación porque el tema es académico y no privado.",
+          "Aceptar solo videos de quienes tengan mejor desempeño oral.",
+          "Cambiar a entrega privada o canal institucional con consentimiento pertinente.",
+          "Pedir que cada familia bloquee los comentarios después de publicar."
+        ],
+        correct: 2,
+        feedback: "El Código manda guardar reserva sobre información recibida en la labor educativa y actuar con respeto a la dignidad y bienestar. La exposición pública de menores exige prudencia y consentimiento."
+      },
+      {
+        chapter: "III", number: "10", page: 15, level: "Básica superior",
+        text: "Tras una llamada de atención de autoridades, un docente dice al curso: 'por culpa de ustedes ahora todos pagarán'. Les habla con sarcasmo durante la semana. ¿Qué dimensión ética se vulnera?",
+        options: [
+          "La puntualidad en encuentros institucionales.",
+          "El uso eficiente de recursos salesianos.",
+          "La comunicación electrónica institucional.",
+          "El trato no descortés, agresivo o negativo hacia destinatarios."
+        ],
+        correct: 3,
+        feedback: "El Código señala no expresarse jamás en términos descorteses, agresivos o negativos en relación con destinatarios y personas vinculadas a la obra."
+      },
+      {
+        chapter: "IV", number: "36", page: 21, level: "Preparatoria",
+        text: "Un docente amenaza: 'si siguen haciendo bulla, les mando más tarea y más difícil'. No busca aprendizaje, sino control por miedo. Desde la asistencia salesiana, ¿cuál alternativa sería más coherente?",
+        options: [
+          "Sostener presencia educativa activa que anime responsabilidad sin amenaza.",
+          "Aplicar la tarea extra porque el grupo provocó la consecuencia.",
+          "Usar la amenaza solo si después no se registra en la planificación.",
+          "Dejar que el curso decida el castigo para que parezca democrático."
+        ],
+        correct: 0,
+        feedback: "La asistencia salesiana es presencia educativa cotidiana, fraterna, activa, alentadora y respetuosa de la dignidad; nunca debe ser amenaza ni causar daño."
+      },
+      {
+        chapter: "III", number: "12", page: 15, level: "Bachillerato",
+        text: "Una tutoría individual se realiza en una oficina sin ventana; la puerta queda cerrada porque hay ruido externo. ¿Cuál sería la corrección más adecuada?",
+        options: [
+          "Usar un ambiente visible desde el exterior o con condiciones de transparencia.",
+          "Mantener la puerta cerrada si el estudiante lo solicita.",
+          "Grabar el audio de la sesión para demostrar transparencia.",
+          "Hacer la tutoría en cualquier espacio si dura menos de diez minutos."
+        ],
+        correct: 0,
+        feedback: "Los ambientes físicos de atención, como oficinas, aulas o salones, deben ser visibles desde el exterior para permitir relaciones educativo-pastorales transparentes."
+      },
+      {
+        chapter: "IV", number: "44", page: 25, level: "Bachillerato",
+        text: "Un docente da regalos especiales y secretos a una estudiante que considera 'muy comprometida'. No hay contenido sexual ni solicitud explícita. ¿Qué riesgo identifica el Código?",
+        options: [
+          "Solo hay problema si el regalo supera un valor económico alto.",
+          "Es aceptable si mejora la motivación académica.",
+          "El secreto y el trato preferente pueden conducir a acusaciones serias.",
+          "Debe resolverse pidiendo que la estudiante no lo comente."
+        ],
+        correct: 2,
+        feedback: "El Código pide evitar favoritismo, relaciones secretas y dinero o regalos especiales y/o secretos a niños, niñas o adolescentes, porque pueden conducir a acusaciones serias."
+      },
+      {
+        chapter: "V", number: "47", page: 27, level: "Preparatoria",
+        text: "Ante un suceso vulneratorio contra una niña pequeña, el equipo directivo se concentra primero en el acta y deja para después la contención de la víctima. ¿Qué prioridad recuerda el Código?",
+        options: [
+          "Cerrar el expediente antes de informar a la familia.",
+          "Esperar la orientación externa para cualquier acción.",
+          "Facilitar condiciones para la asistencia inmediata a la víctima.",
+          "Mantener la jornada normal para no alarmar al grupo."
+        ],
+        correct: 2,
+        feedback: "Si ocurre un suceso vulneratorio o conducta delictiva con un menor como víctima, el Director o Administrador debe facilitar condiciones para la asistencia inmediata, al margen de los procedimientos legales."
+      },
+      {
+        chapter: "IV", number: "37", page: 22, level: "Básica superior",
+        text: "Un docente pide a un estudiante fuerte que lleve un botellón pesado a la tutoría porque 'a él no le cuesta'. No es una habitación privada, pero se normaliza pedir servicios personales. ¿Qué juicio es más prudente?",
+        options: [
+          "Conviene evitar instrumentalizar al estudiante y cuidar su dignidad y seguridad.",
+          "Es correcto porque la juventud del estudiante reduce el riesgo físico.",
+          "Es correcto si el docente tiene discapacidad o es mujer.",
+          "El Código solo prohíbe enviar menores a habitaciones privadas."
+        ],
+        correct: 0,
+        feedback: "Aunque el numeral 37 prohíbe enviar menores a habitaciones privadas para servicios, el criterio mayor del capítulo IV es garantizar dignidad, integridad y bienestar. Pedir cargas personales puede instrumentalizar al estudiante."
+      },
+      {
+        chapter: "III", number: "18", page: 17, level: "Personal docente",
+        text: "En un chat institucional, un profesor comparte un meme que ridiculiza a un grupo cultural para 'relajar el ambiente'. ¿Qué criterio aplica?",
+        options: [
+          "El humor interno es válido si no llega a estudiantes.",
+          "El material discriminatorio no debe transmitirse por comunicaciones electrónicas.",
+          "La intención de relajar elimina la responsabilidad ética.",
+          "Solo se sanciona si alguien externo lo reenvía."
+        ],
+        correct: 1,
+        feedback: "El Código prohíbe usar comunicaciones electrónicas para transmitir materiales difamatorios, discriminatorios u obscenos o que violen reglas nacionales o locales."
+      },
+      {
+        chapter: "IV", number: "43", page: 23, level: "Preparatoria",
+        text: "Al despedir a niños de 5 años, una educadora se arrodilla, saluda verbalmente y toma de la mano a quien necesita guía para caminar. ¿Cómo clasifica el Código estas acciones?",
+        options: [
+          "Inadecuadas, porque todo contacto físico con menores debe evitarse.",
+          "Adecuadas solo cuando hay una cámara grabando.",
+          "Adecuadas si son prudentes, breves y propias del cuidado de niños pequeños.",
+          "Inadecuadas porque el afecto educativo siempre genera sospecha."
+        ],
+        correct: 2,
+        feedback: "El Código lista como conductas adecuadas inclinarse o arrodillarse para saludar a niños pequeños, tomar su mano al caminar y saludar verbalmente, siempre con prudencia y contexto."
+      },
+      {
+        chapter: "V", number: "49", page: 28, level: "Administrativo-docente",
+        text: "Un colaborador detecta indicios de que otro adulto manipula registros para encubrir una acción contraria a la ética. No involucra directamente abuso sexual. ¿Qué corresponde?",
+        options: [
+          "Guardar la información hasta tener una confesión directa.",
+          "Conversar con el implicado para que corrija el registro.",
+          "Hacer una encuesta anónima al personal antes de informar.",
+          "Notificar inmediatamente a las autoridades competentes de la comunidad local."
+        ],
+        correct: 3,
+        feedback: "Los indicios de acciones contrarias a la ética, actos ilegales o delitos por parte del personal se notifican inmediatamente a las autoridades competentes de la comunidad local."
+      },
+      {
+        chapter: "III", number: "7", page: 15, level: "Bachillerato",
+        text: "Un área usa equipos del colegio para producir material de una campaña externa, argumentando que también promueve valores. ¿Qué pregunta ética debe resolverse primero?",
+        options: [
+          "Si el material tiene buena calidad gráfica.",
+          "Si los estudiantes participarán voluntariamente.",
+          "Si el uso de bienes salesianos es apropiado, eficiente y conforme a la obra.",
+          "Si la campaña puede publicarse después del horario laboral."
+        ],
+        correct: 2,
+        feedback: "Los bienes y recursos de la Sociedad Salesiana deben preservarse y usarse de modo apropiado y eficiente, respetando la misión, normas internas y leyes aplicables."
+      },
+      {
+        chapter: "IV", number: "44", page: 26, level: "Básica superior",
+        text: "Una docente comenta en privado el cuerpo de un adolescente porque 'solo quería orientarlo sobre su postura y presencia'. ¿Cuál límite establece el Código?",
+        options: [
+          "Comentar el cuerpo de un menor es comportamiento que debe evitarse.",
+          "Es válido si el comentario no se hace frente al curso.",
+          "Es válido si se formula como consejo de imagen personal.",
+          "Solo es inadecuado cuando hay contacto físico."
+        ],
+        correct: 0,
+        feedback: "El Código incluye comentar sobre el cuerpo de un niño, niña o adolescente entre los comportamientos que deben evitarse por el riesgo de acusaciones serias."
+      },
+      {
+        chapter: "IV", number: "42", page: 23, level: "Elemental",
+        text: "Una docente pide a estudiantes que califiquen exámenes de sus compañeros para ahorrar tiempo. Los nombres y notas quedan visibles. ¿Cuál criterio pesa más?",
+        options: [
+          "La estrategia es válida si todos aprenden del error ajeno.",
+          "Debe evitarse por reserva, dignidad y posible afectación de autoestima.",
+          "Es correcta si los estudiantes no modifican las calificaciones.",
+          "Solo habría problema si se trata de exámenes de bachillerato."
+        ],
+        correct: 1,
+        feedback: "El Código exige reserva sobre información educativa y evita maltrato psicológico que afecte autoestima. Exponer evaluaciones entre pares puede vulnerar dignidad y confidencialidad."
+      },
+      {
+        chapter: "III", number: "4", page: 14, level: "Personal de servicio",
+        text: "En una reunión, una persona desacredita la propuesta de mantenimiento diciendo: 'eso lo dice porque no entiende pedagogía'. ¿Qué respuesta institucional refleja mejor el Código?",
+        options: [
+          "Permitir el comentario si la reunión exige decisiones rápidas.",
+          "Pedir respeto a los puntos de vista y expresión constructiva.",
+          "Cerrar la participación de personal no docente en temas escolares.",
+          "Responder con la misma firmeza para equilibrar la discusión."
+        ],
+        correct: 1,
+        feedback: "El Código pide aprecio, bondad, cordialidad, franqueza y respeto a los puntos de vista de los demás, creando un ambiente seguro para opiniones constructivas."
+      },
+      {
+        chapter: "IV", number: "33", page: 21, level: "Bachillerato",
+        text: "En una convivencia, un adulto propone alojar a dos adolescentes en su habitación porque el hotel se quedó sin espacio. Hay buena intención y el grupo está cansado. ¿Qué dice el Código?",
+        options: [
+          "Se permite si los adolescentes son de bachillerato y aceptan.",
+          "Se permite si el adulto duerme en una cama separada.",
+          "No se comparte dormitorio, cama ni habitación con menores.",
+          "Puede hacerse si se informa a la autoridad al día siguiente."
+        ],
+        correct: 2,
+        feedback: "El Código prohíbe pernoctar con menores sin condiciones exigidas, compartir dormitorio, recibir visitas en habitaciones propias o dormir en la misma cama o cuarto de hotel con menores."
+      },
+      {
+        chapter: "V", number: "46", page: 27, level: "Bachillerato",
+        text: "Al recibir una denuncia de abuso sexual, alguien afirma que basta con manejarlo internamente porque es una obra educativa-pastoral. ¿Cuál precisión es correcta?",
+        options: [
+          "El abuso sexual de menores también es crimen perseguido penalmente.",
+          "La vía interna sustituye a las autoridades cuando hay buena fe.",
+          "Solo se comunica afuera si la familia lo exige por escrito.",
+          "La denuncia externa espera hasta terminar el año lectivo."
+        ],
+        correct: 0,
+        feedback: "El Código recuerda que el abuso sexual de menores no es solo delito canónico, sino crimen perseguido por autoridades penales; se siguen normas legales y se colabora con autoridades legítimas."
+      },
+      {
+        chapter: "V", number: "45", page: 27, level: "Personal docente",
+        text: "Una persona adulta pide a dos docentes que no reporten una acusación delicada para 'evitar escándalo' hasta hablar con la familia. ¿Cuál respuesta expresa mejor el Código?",
+        options: [
+          "Guardar silencio si la intención es proteger el nombre de la institución.",
+          "Pedir al estudiante que confirme su versión frente al acusado.",
+          "Reportar sin pedir a otros que callen la acusación.",
+          "Esperar una semana para comprobar si el rumor desaparece."
+        ],
+        correct: 2,
+        feedback: "El Código indica que bajo ninguna circunstancia se pide a otros mantener en silencio acusaciones o no reportar hechos a las autoridades respectivas."
+      },
+      {
+        chapter: "V", number: "45", page: 27, level: "Administrativo-docente",
+        text: "Un directivo recibe una queja sobre conducta inadecuada hacia un adolescente. Ya avisó internamente a su equipo cercano. ¿Qué paso completa el procedimiento indicado?",
+        options: [
+          "Notificar lo antes posible al Inspector Salesiano por la vía correspondiente.",
+          "Esperar el informe de todos los docentes del curso.",
+          "Consultar primero a estudiantes amigos del adolescente.",
+          "Resolverlo solo con una reunión de convivencia."
+        ],
+        correct: 0,
+        feedback: "El Director o autoridad inmediata notifica lo antes posible al Inspector Salesiano, quien sigue la política implementada para casos de abusos sexuales."
+      },
+      {
+        chapter: "V", number: "48", page: 28, level: "Personal de servicio",
+        text: "Tras presentar una queja por acoso, una colaboradora empieza a recibir cambios de turno desfavorables sin explicación. ¿Qué lectura permite el Código?",
+        options: [
+          "Los cambios de turno son siempre potestad interna y no se revisan.",
+          "Podría tratarse de represalia, algo que la institución debe evitar.",
+          "Solo importa si la persona tiene contrato indefinido.",
+          "La queja pierde valor si genera incomodidad laboral."
+        ],
+        correct: 1,
+        feedback: "En los procedimientos por acoso sexual y delitos laborales, la institución garantiza reserva y asegura que no se tomarán represalias por presentar una queja."
+      },
+      {
+        chapter: "V", number: "50", page: 28, level: "Personal docente",
+        text: "Se confirma una falta grave cometida por un religioso contra un menor. Alguien propone tratarlo solo como incumplimiento laboral común. ¿Qué marco recuerda el Código?",
+        options: [
+          "Se aplican solamente llamados de atención internos.",
+          "La comunidad local decide sin normas externas para proteger reserva.",
+          "El procedimiento se limita al reglamento estudiantil.",
+          "Se siguen procedimientos legales y normas canónicas y salesianas aplicables."
+        ],
+        correct: 3,
+        feedback: "Para abuso sexual de menores por parte de religioso y/o sacerdote se siguen procedimientos legales, normas del Código de Derecho Canónico, documentos oficiales, Conferencia Episcopal y derecho propio salesiano."
+      },
+      {
+        chapter: "IV", number: "25", page: 19, level: "Preparatoria",
+        text: "Al finalizar la jornada, una tutora de inicial deja a sus niños con personal de apoyo para avanzar registros, aunque la entrega personal a representantes forma parte del cuidado acordado. ¿Qué criterio salesiano se tensiona?",
+        options: [
+          "La relación de ayuda y acompañamiento con conducta transparente.",
+          "La posibilidad de delegar tareas cuando hay sobrecarga administrativa.",
+          "La participación puntual en encuentros de formación.",
+          "La prohibición de comunicaciones electrónicas ajenas al trabajo."
+        ],
+        correct: 0,
+        feedback: "El Código plantea una relación de ayuda y acompañamiento educativo-pastoral, con respeto y conducta transparente. En edades pequeñas, la entrega responsable es parte concreta del cuidado."
+      },
+      {
+        chapter: "IV", number: "32", page: 21, level: "Básica superior",
+        text: "Un docente permite que estudiantes vendan snacks sin verificar origen ni condiciones, porque financiarán un proyecto de aula. ¿Qué lectura del Código ayuda a decidir?",
+        options: [
+          "La recaudación justifica flexibilizar controles si hay aprendizaje.",
+          "Debe cuidarse que no se distribuya a menores sustancias tóxicas ni material inadecuado.",
+          "Solo importa que el dinero no sea administrado por el docente.",
+          "La venta es aceptable si se realiza durante recreos."
+        ],
+        correct: 1,
+        feedback: "El Código pide cuidar que en ninguna circunstancia se distribuya a niños, niñas y adolescentes sustancias tóxicas ni material inadecuado u ofensivo."
+      },
+      {
+        chapter: "III", number: "20", page: 17, level: "Administrativo-docente",
+        text: "Una situación delicada de convivencia se coordina desde correos personales porque son más rápidos que el institucional. ¿Qué práctica recomienda el Código en la medida de lo posible?",
+        options: [
+          "Canalizar los asuntos de trabajo por correos institucionales con aviso legal.",
+          "Usar el canal que responda más pronto aunque no quede trazabilidad.",
+          "Evitar escribir para no dejar evidencia de decisiones sensibles.",
+          "Pasar todo a llamadas privadas para proteger a los involucrados."
+        ],
+        correct: 0,
+        feedback: "El Código indica canalizar, en la medida de lo posible, los asuntos tratados por trabajo a través de correos institucionales con el aviso legal correspondiente."
+      },
+      {
+        chapter: "V", number: "51", page: 28, level: "Personal docente",
+        text: "Un docente sostiene que una infracción ética sin delito penal no puede tener consecuencia laboral. ¿Qué señala el Código?",
+        options: [
+          "Las infracciones éticas laborales pueden considerarse incumplimiento del Reglamento Interno.",
+          "Solo las faltas penales activan sanciones administrativas.",
+          "Las faltas éticas se resuelven únicamente con acompañamiento espiritual.",
+          "La sanción depende de que exista daño económico comprobado."
+        ],
+        correct: 0,
+        feedback: "Las infracciones éticas del personal con relación laboral se consideran incumplimiento al Reglamento Interno de Trabajo y se sancionan conforme a reglamentos aprobados."
+      }
+    ];
+
+    let teams = [];
+    let currentQuestion = 0;
+    let currentTeam = 0;
+    let timerValue = 30;
+    let timerId = null;
+    let answered = false;
+    let audioReady = false;
+    let audioCtx;
+
+    const setupEl = document.getElementById("setup");
+    const gameEl = document.getElementById("game");
+    const rankingEl = document.getElementById("ranking");
+    const teamListEl = document.getElementById("teamList");
+    const scoreStripEl = document.getElementById("scoreStrip");
+    const questionTextEl = document.getElementById("questionText");
+    const answersEl = document.getElementById("answers");
+    const feedbackEl = document.getElementById("feedback");
+    const timerEl = document.getElementById("timer");
+    const currentTeamEl = document.getElementById("currentTeam");
+    const questionCountEl = document.getElementById("questionCount");
+    const levelTagEl = document.getElementById("levelTag");
+    const chapterTagEl = document.getElementById("chapterTag");
+    const progressBarEl = document.getElementById("progressBar");
+    const nextButton = document.getElementById("nextQuestion");
+    const startTimerButton = document.getElementById("startTimer");
+    document.body.appendChild(feedbackEl);
+
+    function createDefaultTeams() {
+      teams = Array.from({ length: 6 }, (_, index) => ({
+        name: `Equipo ${index + 1}`,
+        score: 0,
+        correct: 0,
+        answered: 0
+      }));
+      renderTeamInputs();
+    }
+
+    function renderTeamInputs() {
+      teamListEl.innerHTML = "";
+      teams.forEach((team, index) => {
+        const row = document.createElement("div");
+        row.className = "team-row";
+        row.innerHTML = `
+          <div class="team-number">${index + 1}</div>
+          <input value="${escapeHtml(team.name)}" aria-label="Nombre del equipo ${index + 1}">
+          <button class="icon-btn" title="Eliminar equipo" aria-label="Eliminar equipo">x</button>
+        `;
+        const input = row.querySelector("input");
+        input.addEventListener("input", () => team.name = input.value);
+        row.querySelector("button").addEventListener("click", () => {
+          if (teams.length > 2) {
+            teams.splice(index, 1);
+            renderTeamInputs();
+          }
+        });
+        teamListEl.appendChild(row);
+      });
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+      }[char]));
+    }
+
+    function initAudio() {
+      if (!audioReady) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        audioReady = true;
+      }
+      if (audioCtx.state === "suspended") audioCtx.resume();
+    }
+
+    function playClick() {
+      initAudio();
+      sound("select");
+    }
+
+    function tone(freq, duration = .14, type = "sine", gain = .055, delay = 0) {
+      if (!audioReady) return;
+      const now = audioCtx.currentTime + delay;
+      const osc = audioCtx.createOscillator();
+      const amp = audioCtx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, now);
+      amp.gain.setValueAtTime(0.0001, now);
+      amp.gain.exponentialRampToValueAtTime(gain, now + .02);
+      amp.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+      osc.connect(amp).connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + duration + .02);
+    }
+
+    function sound(kind) {
+      initAudio();
+      const urls = {
+        correct: "https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3",
+        wrong: "https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3",
+        tick: "https://assets.mixkit.co/active_storage/sfx/2070/2070-preview.mp3",
+        timeout: "https://assets.mixkit.co/active_storage/sfx/2023/2023-preview.mp3",
+        select: "https://assets.mixkit.co/active_storage/sfx/2070/2070-preview.mp3"
+      };
+      const volumes = { tick: .22, select: .28, correct: .7, wrong: .72, timeout: .72 };
+      const playMp3 = (type, delay = 0) => {
+        window.setTimeout(() => {
+          const audio = new Audio(urls[type]);
+          audio.volume = volumes[type] ?? .6;
+          audio.play().catch(() => fallbackSound(type));
+        }, delay);
+      };
+      if (kind === "tick" || kind === "select" || kind === "correct" || kind === "wrong" || kind === "timeout") playMp3(kind);
+      if (kind === "fanfare") {
+        playMp3("correct", 0);
+        playMp3("correct", 420);
+        playMp3("correct", 840);
+      }
+    }
+
+    function fallbackSound(kind) {
+      if (kind === "tick") tone(960, .055, "square", .03);
+      if (kind === "select") { tone(420, .06, "square", .035); tone(620, .06, "square", .03, .045); }
+      if (kind === "correct") { tone(660, .14, "sine", .085); tone(880, .18, "sine", .08, .12); tone(1175, .24, "sine", .075, .28); }
+      if (kind === "wrong") { tone(260, .22, "sawtooth", .07); tone(190, .28, "sawtooth", .06, .18); }
+      if (kind === "timeout") { tone(330, .16, "triangle", .07); tone(260, .22, "triangle", .065, .17); tone(196, .34, "triangle", .06, .38); }
+    }
+
+    function startGame() {
+      initAudio();
+      teams = teams
+        .map(team => ({ name: team.name.trim() || "Equipo sin nombre", score: 0, correct: 0, answered: 0 }))
+        .filter(team => team.name.length);
+      if (teams.length < 2) return;
+      currentQuestion = 0;
+      currentTeam = 0;
+      setupEl.style.display = "none";
+      rankingEl.style.display = "none";
+      gameEl.style.display = "block";
+      renderQuestion();
+    }
+
+    function renderScores() {
+      scoreStripEl.innerHTML = "";
+      teams.forEach((team, index) => {
+        const card = document.createElement("div");
+        card.className = `score-card ${index === currentTeam ? "active" : ""}`;
+        card.innerHTML = `<div class="name">${escapeHtml(team.name)}</div><div class="points">${team.score}</div><div>${team.correct}/${team.answered} aciertos</div>`;
+        scoreStripEl.appendChild(card);
+      });
+    }
+
+    function renderQuestion() {
+      clearInterval(timerId);
+      timerId = null;
+      answered = false;
+      timerValue = 30;
+      updateTimer();
+      const q = questions[currentQuestion];
+      questionTextEl.textContent = q.text;
+      questionCountEl.textContent = `Pregunta ${currentQuestion + 1} de ${questions.length}`;
+      levelTagEl.textContent = q.level;
+      chapterTagEl.textContent = `Capítulo ${q.chapter}, numeral ${q.number}`;
+      currentTeamEl.textContent = teams[currentTeam].name;
+      progressBarEl.style.width = `${(currentQuestion / questions.length) * 100}%`;
+      answersEl.innerHTML = "";
+      feedbackEl.style.display = "none";
+      feedbackEl.className = "feedback";
+      feedbackEl.innerHTML = "";
+      startTimerButton.disabled = false;
+      nextButton.disabled = true;
+      renderScores();
+    }
+
+    function updateTimer() {
+      timerEl.textContent = timerValue;
+      const degrees = (timerValue / 30) * 360;
+      const color = timerValue <= 5 ? "var(--red)" : timerValue <= 10 ? "var(--sun)" : "var(--green)";
+      timerEl.style.background = `conic-gradient(${color} ${degrees}deg, #dbe7f3 0deg)`;
+    }
+
+    function revealAnswers() {
+      initAudio();
+      playClick();
+      const q = questions[currentQuestion];
+      answersEl.innerHTML = "";
+      q.options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.className = "answer";
+        button.innerHTML = `<span class="letter">${String.fromCharCode(65 + index)}</span>${escapeHtml(option)}`;
+        button.addEventListener("click", () => selectAnswer(index));
+        answersEl.appendChild(button);
+      });
+      startTimerButton.disabled = true;
+      timerId = setInterval(() => {
+        timerValue -= 1;
+        updateTimer();
+        if (timerValue > 0 && timerValue <= 5) sound("tick");
+        if (timerValue <= 0) {
+          clearInterval(timerId);
+          handleTimeout();
+        }
+      }, 1000);
+    }
+
+    function selectAnswer(index) {
+      if (answered) return;
+      sound("select");
+      answered = true;
+      clearInterval(timerId);
+      const q = questions[currentQuestion];
+      const buttons = [...answersEl.querySelectorAll(".answer")];
+      buttons.forEach((button, buttonIndex) => {
+        button.disabled = true;
+        if (buttonIndex === q.correct) button.classList.add("correct");
+        if (buttonIndex === index && index !== q.correct) button.classList.add("wrong");
+      });
+      teams[currentTeam].answered += 1;
+      if (index === q.correct) {
+        teams[currentTeam].score += 10;
+        teams[currentTeam].correct += 1;
+        sound("correct");
+        showFeedback(true, q);
+      } else {
+        sound("wrong");
+        showFeedback(false, q);
+      }
+      renderScores();
+      nextButton.disabled = false;
+      progressBarEl.style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+    }
+
+    function handleTimeout() {
+      if (answered) return;
+      answered = true;
+      const q = questions[currentQuestion];
+      const buttons = [...answersEl.querySelectorAll(".answer")];
+      buttons.forEach((button, index) => {
+        button.disabled = true;
+        if (index === q.correct) button.classList.add("correct");
+      });
+      teams[currentTeam].answered += 1;
+      sound("timeout");
+      showFeedback(false, q, true);
+      renderScores();
+      nextButton.disabled = false;
+      progressBarEl.style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+    }
+
+    function showFeedback(isCorrect, q, timeout = false) {
+      const title = timeout ? "Tiempo agotado" : isCorrect ? "Respuesta correcta" : "Respuesta incorrecta";
+      const correctText = q.options[q.correct];
+      feedbackEl.className = `feedback ${isCorrect ? "correct-modal" : "wrong-modal"}`;
+      feedbackEl.innerHTML = `
+        <div class="modal-card">
+          <div class="result-icon">${isCorrect ? "✓" : "×"}</div>
+          <strong>${title}</strong>
+          <p>${isCorrect ? "Tu criterio refleja el corazón de la educación salesiana." : "El Código nos invita a mirar este caso con mayor cuidado."}</p>
+          <div class="argument">
+            <div class="argument-label">Argumento institucional</div>
+            <p>Respuesta esperada: ${escapeHtml(correctText)}</p>
+            <p>${escapeHtml(q.feedback)}</p>
+            <p>Sustento: Capítulo ${q.chapter}, numeral ${q.number}, página ${q.page} del Código de Comportamiento Ético.</p>
+          </div>
+          <button id="feedbackNext" class="modal-next">Siguiente pregunta →</button>
+        </div>
+      `;
+      feedbackEl.style.display = "block";
+      document.getElementById("feedbackNext").addEventListener("click", nextQuestion);
+    }
+
+    function nextQuestion() {
+      currentQuestion += 1;
+      if (currentQuestion >= questions.length) {
+        finishGame();
+        return;
+      }
+      currentTeam = (currentTeam + 1) % teams.length;
+      renderQuestion();
+    }
+
+    function finishGame() {
+      initAudio();
+      clearInterval(timerId);
+      gameEl.style.display = "none";
+      setupEl.style.display = "none";
+      rankingEl.style.display = "block";
+      const sorted = [...teams].sort((a, b) => b.score - a.score || b.correct - a.correct || a.name.localeCompare(b.name));
+      const winner = sorted[0];
+      document.getElementById("winnerText").textContent = `Ganador: ${winner.name} con ${winner.score} puntos`;
+      document.getElementById("rankingBody").innerHTML = sorted.map((team, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${escapeHtml(team.name)}</td>
+          <td>${team.score}</td>
+          <td>${team.correct}</td>
+          <td>${team.answered}</td>
+        </tr>
+      `).join("");
+      sound("fanfare");
+      laúnchConfetti();
+    }
+
+    function laúnchConfetti() {
+      const canvas = document.getElementById("confetti");
+      const ctx = canvas.getContext("2d");
+      const colors = ["#0057b8", "#ffc400", "#e63946", "#12a150", "#00b4d8", "#7b2cbf"];
+      const particles = [];
+      const resize = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      };
+      resize();
+      for (let i = 0; i < 210; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: -20 - Math.random() * canvas.height * .6,
+          r: 5 + Math.random() * 7,
+          c: colors[Math.floor(Math.random() * colors.length)],
+          vx: -2 + Math.random() * 4,
+          vy: 2 + Math.random() * 5,
+          rot: Math.random() * Math.PI,
+          spin: -.18 + Math.random() * .36
+        });
+      }
+      let frames = 0;
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.spin;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle = p.c;
+          ctx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r * .65);
+          ctx.restore();
+        });
+        frames += 1;
+        if (frames < 230) requestAnimationFrame(draw);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      draw();
+    }
+
+    document.getElementById("addTeam").addEventListener("click", () => {
+      teams.push({ name: `Equipo ${teams.length + 1}`, score: 0, correct: 0, answered: 0 });
+      renderTeamInputs();
+    });
+    document.getElementById("startGame").addEventListener("click", startGame);
+    startTimerButton.addEventListener("click", revealAnswers);
+    nextButton.addEventListener("click", nextQuestion);
+    document.getElementById("finishGame").addEventListener("click", finishGame);
+    document.getElementById("playAgain").addEventListener("click", startGame);
+    document.getElementById("backToSetup").addEventListener("click", () => {
+      rankingEl.style.display = "none";
+      setupEl.style.display = "grid";
+      renderTeamInputs();
+    });
+
+    createDefaultTeams();
+  </script>
+</body>
+</html>
